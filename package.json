@@ -1,0 +1,26 @@
+{
+  "name": "transformer-prototype",
+  "version": "0.0.0",
+  "repository": "https://github.com/kamiazya/transformer-prototype.git",
+  "author": "kamiazya yuki@kamiazya.tech",
+  "type": "module",
+  "private": true,
+  "license": "MIT",
+  "scripts": {
+    "start": "node --no-warnings --loader ts-node/esm src/main.ts",
+    "format": "eslint -c .eslintrc.json --ext ts src --fix && prettier --write './src/**/*.ts'",
+    "lint": "eslint -c .eslintrc.json --ext ts src"
+  },
+  "devDependencies": {
+    "@types/node": "^17.0.8",
+    "@typescript-eslint/eslint-plugin": "^5.9.1",
+    "@typescript-eslint/parser": "^5.9.1",
+    "eslint": "^8.7.0",
+    "eslint-config-prettier": "^8.3.0",
+    "eslint-plugin-import": "^2.25.4",
+    "eslint-plugin-prettier": "^4.0.0",
+    "prettier": "^2.5.1",
+    "ts-node": "^10.4.0",
+    "typescript": "^4.5.4"
+  }
+}
