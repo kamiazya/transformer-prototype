@@ -4,7 +4,10 @@ export interface TranslatorPlugin {
   onData(data: any): AsyncGenerator<State>;
 }
 
-export interface Type<T> {
+// eslint-disable-next-line @typescript-eslint/no-empty-interface
+export interface TranslatorModule {}
+
+export interface constructor<T> {
   new (...args: any[]): T;
 }
 

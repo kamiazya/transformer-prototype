@@ -1,8 +1,6 @@
-import type { TranslatorPlugin, Type } from '../types.js';
+import type { TranslatorPlugin, constructor } from '../types.js';
 
-// export const plugins = new Map<string, Type<TranslatorPlugin>>();
-
-export const paths: [from: string, to: string, plugin: Type<TranslatorPlugin>][] = [];
+const pluginOptionsKey = Symbol('pluginOptions');
 
 interface PluginOptions {
   on: string;
@@ -10,10 +8,12 @@ interface PluginOptions {
 }
 
 export function Plugin(options: PluginOptions) {
-  return (cls: Type<TranslatorPlugin>): Type<TranslatorPlugin> => {
-    for (const to of options.yields) {
-      paths.push([options.on, to, cls]);
-    }
+  return (cls: constructor<TranslatorPlugin>): constructor<TranslatorPlugin> => {
+    Reflect.set(cls, pluginOptionsKey, options);
     return cls;
   };
+}
+
+export function getPluginOptions(plugin: constructor<TranslatorPlugin>): PluginOptions {
+  return Reflect.get(plugin, pluginOptionsKey);
 }
